@@ -11,7 +11,7 @@ func main() {
 }
 
 func users(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "success")
+	w.Write([]byte("Hello"))
 }
 
 func handleRequest() {
