@@ -12,7 +12,7 @@ import (
 
 func init() {
 	// Setup the mgm default config
-	err := mgm.SetDefaultConfig(nil, "nextflow", options.Client().ApplyURI("mongodb://localhost:27017"))
+	err := mgm.SetDefaultConfig(nil, "nextflow", options.Client().ApplyURI("mongodb://mongo:27017"))
 	if err != nil {
 		panic(err)
 	}
