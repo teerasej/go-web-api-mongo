@@ -25,10 +25,12 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 		bodyBytes, err := ioutil.ReadAll(r.Body)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("cannot read body"))
 		}
 		err = json.Unmarshal(bodyBytes, &newUser)
 		if err != nil {
 			w.WriteHeader(http.StatusBadRequest)
+			w.Write([]byte("cannot parse JSON"))
 		}
 		fmt.Println(newUser)
 		w.WriteHeader(http.StatusCreated)
