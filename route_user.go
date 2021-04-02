@@ -6,10 +6,15 @@ import (
 )
 
 func GetUsers(w http.ResponseWriter, r *http.Request) {
-	userResponse := UserData{
-		Userid:   28566777,
-		Email:    "training@nextflow.in.th",
-		Password: "1234",
+	switch r.Method {
+	case http.MethodGet:
+		userResponse := UserData{
+			Userid:   28566777,
+			Email:    "training@nextflow.in.th",
+			Password: "1234",
+		}
+		w.Header().Set("Content-Type", "application/json")
+		json.NewEncoder(w).Encode(userResponse)
 	}
-	json.NewEncoder(w).Encode(userResponse)
+
 }
