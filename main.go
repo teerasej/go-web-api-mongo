@@ -18,3 +18,7 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 	}
 	json.NewEncoder(w).Encode(userResponse)
 }
+
+func users(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprint(w, "success")
+}
