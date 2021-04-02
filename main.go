@@ -8,6 +8,7 @@ import (
 
 func main() {
 	fmt.Println("ok")
+	handleRequest()
 }
 
 func getUsers(w http.ResponseWriter, r *http.Request) {
@@ -21,4 +22,10 @@ func getUsers(w http.ResponseWriter, r *http.Request) {
 
 func users(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "success")
+}
+
+func handleRequest() {
+	http.HandleFunc("/", users)
+	http.HandleFunc("/users", getUsers)
+	http.ListenAndServe(":8080", nil)
 }
