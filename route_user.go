@@ -43,6 +43,13 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte("cannot parse JSON"))
 		}
+
+		err = mgm.Coll(&newUser).Create(&newUser)
+		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("cannot create new user"))
+		}
+
 		fmt.Println(newUser)
 		w.WriteHeader(http.StatusCreated)
 	}
