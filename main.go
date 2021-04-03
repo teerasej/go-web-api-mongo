@@ -6,7 +6,8 @@ import (
 )
 
 func main() {
-	fmt.Println("ok")
+	fmt.Println("Server is starting")
+	fmt.Println("Server is running at port 8080")
 	handleRequest()
 }
 
