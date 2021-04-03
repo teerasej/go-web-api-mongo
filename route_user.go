@@ -12,7 +12,7 @@ import (
 
 func init() {
 	// Setup the mgm default config
-	err := mgm.SetDefaultConfig(nil, "nextflow", options.Client().ApplyURI("mongodb://mongo:27017"))
+	err := mgm.SetDefaultConfig(nil, "nextflow", options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
 		panic(err)
 	}
@@ -51,7 +51,9 @@ func GetUsers(w http.ResponseWriter, r *http.Request) {
 		}
 
 		fmt.Println(newUser)
-		w.WriteHeader(http.StatusCreated)
+
+		w.Header().Add("Content-Type", "application/json")
+		w.Write([]byte(`{"message":"success"}`))
 	}
 
 }
