@@ -5,14 +5,22 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/kamva/mgm/v3"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func init() {
-	// Setup the mgm default config
-	err := mgm.SetDefaultConfig(nil, "nextflow", options.Client().ApplyURI("mongodb://localhost:27017"))
+
+	var mongoServer = "localhost"
+	var envMongoServer = os.Getenv("MONGO_SERVER")
+
+	if envMongoServer != "" {
+		mongoServer = envMongoServer
+	}
+
+	err := mgm.SetDefaultConfig(nil, "nextflow", options.Client().ApplyURI("mongodb://"+mongoServer+":27017"))
 	if err != nil {
 		panic(err)
 	}
